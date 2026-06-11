@@ -1,4 +1,4 @@
-import type { Group, Match, KnockoutMatch, TeamStats } from '../data/copa2026';
+import type { Group, Match, KnockoutMatch } from '../data/copa2026';
 
 export function calculateGroups(matches: Match[], initialGroups: Group[]): Group[] {
   // Fazemos uma cópia profunda para não mutar o estado inicial
