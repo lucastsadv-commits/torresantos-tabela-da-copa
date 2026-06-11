@@ -6,8 +6,7 @@ import { TournamentProvider } from '../context/TournamentContext';
 
 const TabelaGallery: React.FC = () => {
   return (
-    <TournamentProvider>
-      <section id="tabela" className="py-10 md:py-20 bg-[#FAFAF9]">
+    <section id="tabela" className="py-10 md:py-20 bg-[#FAFAF9]">
         <div className="max-w-[1600px] mx-auto px-2 sm:px-6 lg:px-8">
           
           <motion.div 
@@ -37,7 +36,6 @@ const TabelaGallery: React.FC = () => {
 
         </div>
       </section>
-    </TournamentProvider>
   );
 };
 
