@@ -30,3 +30,6 @@ dist-ssr
 
 # Antigravity AI
 .agent/
+
+# Configurações do Banco de Dados / Robô
+supabase/

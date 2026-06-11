@@ -1,16 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { groupsData, type Group } from '../data/copa2026';
+import type { Group } from '../data/copa2026';
+import { useTournament } from '../context/TournamentContext';
 
 const GroupStage: React.FC = () => {
+  const { groups } = useTournament();
+
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <h3 className="text-2xl md:text-3xl font-extrabold text-brand-primary text-center mb-10">
+      <h3 className="font-heading text-2xl md:text-3xl font-extrabold text-brand-primary text-center mb-10">
         Fase de Grupos
       </h3>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-        {groupsData.map((group: Group, idx: number) => (
+        {groups.map((group: Group, idx: number) => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
