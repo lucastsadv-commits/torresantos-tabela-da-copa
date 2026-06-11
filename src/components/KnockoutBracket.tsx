@@ -26,7 +26,7 @@ const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => (
 const KnockoutBracket: React.FC = () => {
   return (
     <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20 overflow-x-auto">
-      <h3 className="text-2xl md:text-3xl font-extrabold text-brand-primary text-center mb-16">
+      <h3 className="font-heading text-2xl md:text-3xl font-extrabold text-brand-primary text-center mb-16">
         Fase Final (Mata-Mata)
       </h3>
 
@@ -76,23 +76,19 @@ const KnockoutBracket: React.FC = () => {
         <div className="flex-1 flex flex-col justify-center gap-16 relative">
           
           <div className="relative mt-8 md:mt-0">
-            <h4 className="text-center font-extrabold text-brand-accent mb-6 uppercase tracking-widest text-lg md:text-xl bg-[#FAFAF9] sticky top-0 z-20 flex items-center justify-center gap-4 drop-shadow-md">
-              <img src="/images/trophy.png" alt="Troféu" className="h-16 md:h-20 w-auto object-contain drop-shadow-xl hover:scale-110 transition-transform" />
-              A Grande Final
-              <img src="/images/trophy.png" alt="Troféu" className="h-16 md:h-20 w-auto object-contain drop-shadow-xl hover:scale-110 transition-transform" />
-            </h4>
+            <h4 className="text-center font-bold text-brand-primary mb-4 uppercase tracking-wider text-sm bg-[#FAFAF9] sticky top-0 z-20">Final</h4>
             {knockoutData.final.map((match) => (
               <motion.div 
-                initial={{ scale: 0.5, opacity: 0, y: 30 }}
+                initial={{ scale: 0.8, opacity: 0, y: 20 }}
                 whileInView={{ scale: 1, opacity: 1, y: 0 }}
-                transition={{ type: "spring", bounce: 0.6, duration: 1 }}
+                transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
                 key={match.id} 
-                className="relative flex justify-center"
+                className="relative flex justify-center mt-2"
               >
                 {/* Glow Effect Back */}
-                <div className="absolute inset-0 bg-brand-accent/40 blur-xl rounded-full animate-pulse scale-150"></div>
+                <div className="absolute inset-0 bg-brand-accent/30 blur-lg rounded-full animate-pulse scale-125"></div>
                 
-                <div className="bg-gradient-to-tr from-yellow-500 via-brand-accent to-yellow-400 p-[3px] rounded-xl shadow-[0_10px_40px_rgba(179,81,32,0.5)] relative z-10 hover:-translate-y-2 transition-transform duration-300">
+                <div className="bg-gradient-to-tr from-yellow-500 via-brand-accent to-yellow-400 p-[2px] rounded-xl shadow-lg relative z-10 hover:-translate-y-1 transition-transform duration-300">
                   <div className="bg-white rounded-lg w-full max-w-[13rem] md:max-w-[16rem] overflow-hidden">
                     <MatchCard match={match} />
                   </div>

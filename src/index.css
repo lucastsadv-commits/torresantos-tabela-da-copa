@@ -20,17 +20,19 @@
   --color-brand-orange-100: #F2E3D7;
 
   /* Fonts */
-  --font-heading: "Montserrat", sans-serif;
-  --font-sans: "Lato", sans-serif;
+  --font-heading: "Unbounded", sans-serif;
+  --font-sans: "Manrope", sans-serif;
 }
 
 @layer base {
   body {
-    @apply font-sans antialiased text-gray-800 bg-[#FAFAF9];
+    font-family: var(--font-sans);
+    @apply antialiased text-gray-800 bg-[#FAFAF9];
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading text-brand-primary font-extrabold;
+    font-family: var(--font-heading);
+    @apply text-brand-primary font-extrabold;
   }
 }
 
