@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import GroupStage from './GroupStage';
 import KnockoutBracket from './KnockoutBracket';
-import { TournamentProvider } from '../context/TournamentContext';
 
 const TabelaGallery: React.FC = () => {
   return (
