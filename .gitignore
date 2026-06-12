@@ -33,3 +33,8 @@ dist-ssr
 
 # Configurações do Banco de Dados / Robô
 supabase/
+
+# Arquivos de Teste
+test-*.js
+*-test.js
+*.test.js
