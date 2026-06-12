@@ -103,17 +103,33 @@ const KnockoutBracket: React.FC = () => {
           ))}
         </div>
 
-        {/* Final e 3º Lugar (Isolados e Destacados) */}
-        <div className="flex-1 flex flex-col justify-center ml-8 md:ml-16 relative">
+        {/* Disputa 3º Lugar (Isolado em sua própria coluna) */}
+        <div className="flex-1 flex flex-col justify-center ml-4 md:ml-8 relative min-w-[200px]">
+          <h4 className="text-center font-bold text-gray-500 mb-6 uppercase tracking-wider text-xs md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Disputa 3º Lugar</h4>
+          {knockout.thirdPlace.map((match) => (
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              key={match.id} 
+              className="relative flex justify-center"
+            >
+              <MatchCard match={match} />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Final (Isolada em sua própria coluna com Cores da Marca) */}
+        <div className="flex-1 flex flex-col justify-center ml-6 md:ml-12 relative">
           
-          {/* Caixa Isolada VIP para a Final */}
-          <div className="bg-gradient-to-b from-gray-900 via-black to-gray-900 p-6 md:p-10 rounded-3xl shadow-[0_0_50px_rgba(255,215,0,0.15)] border border-yellow-600/30 flex flex-col items-center justify-center relative min-w-[280px]">
-            {/* Efeitos de Luz de Fundo */}
-            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-yellow-500 to-transparent opacity-50"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.15)_0%,transparent_70%)] rounded-3xl pointer-events-none"></div>
+          {/* Caixa Isolada VIP para a Final usando Cores do Escritório */}
+          <div className="bg-gradient-to-b from-brand-primary via-[#00112E] to-brand-primary p-6 md:p-10 rounded-3xl shadow-[0_0_40px_rgba(179,81,32,0.2)] border border-brand-accent/40 flex flex-col items-center justify-center relative min-w-[280px]">
+            {/* Efeitos de Luz de Fundo com as cores da marca */}
+            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-70"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(179,81,32,0.15)_0%,transparent_70%)] rounded-3xl pointer-events-none"></div>
             
-            {/* Troféu SVG */}
-            <svg className="w-12 h-12 md:w-16 md:h-16 text-yellow-500 mb-4 drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            {/* Troféu SVG (Agora na cor Accent da marca) */}
+            <svg className="w-12 h-12 md:w-16 md:h-16 text-brand-accent mb-4 drop-shadow-[0_0_15px_rgba(179,81,32,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
               <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
               <path d="M4 22h16"></path>
@@ -122,7 +138,7 @@ const KnockoutBracket: React.FC = () => {
               <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
             </svg>
 
-            <h4 className="text-center font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 mb-8 uppercase tracking-[0.2em] text-lg md:text-xl drop-shadow-sm">A Grande Final</h4>
+            <h4 className="text-center font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-orange-300 via-brand-accent to-brand-orange-500 mb-8 uppercase tracking-[0.2em] text-lg md:text-xl drop-shadow-sm">A Grande Final</h4>
             
             {knockout.final.map((match) => (
               <motion.div 
@@ -132,10 +148,10 @@ const KnockoutBracket: React.FC = () => {
                 key={match.id} 
                 className="relative w-full z-10"
               >
-                {/* Card Customizado da Final */}
-                <div className="bg-gradient-to-br from-yellow-900/40 to-black p-[1px] rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500">
-                  <div className="bg-gray-900 rounded-xl p-4 md:p-5 flex flex-col gap-3 border border-yellow-500/20">
-                    <div className="text-[10px] md:text-xs text-yellow-500/80 text-center font-bold uppercase tracking-widest bg-black/40 -mx-4 md:-mx-5 -mt-4 md:-mt-5 pt-2 pb-1.5 mb-2 rounded-t-xl border-b border-yellow-500/20">
+                {/* Card Customizado da Final (Cores da Marca) */}
+                <div className="bg-gradient-to-br from-brand-accent/40 to-[#00112E] p-[1px] rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500">
+                  <div className="bg-brand-primary rounded-xl p-4 md:p-5 flex flex-col gap-3 border border-brand-accent/20">
+                    <div className="text-[10px] md:text-xs text-brand-orange-300 text-center font-bold uppercase tracking-widest bg-black/30 -mx-4 md:-mx-5 -mt-4 md:-mt-5 pt-2 pb-1.5 mb-2 rounded-t-xl border-b border-brand-accent/20">
                       {match.date}
                     </div>
                     
@@ -143,7 +159,7 @@ const KnockoutBracket: React.FC = () => {
                       <span className={`font-black text-sm md:text-base truncate ${match.team1 === 'Brasil' ? 'text-[#009B3A] drop-shadow-[0_0_5px_rgba(0,155,58,0.8)]' : 'text-gray-100'}`}>
                         {match.team1}
                       </span>
-                      <span className="bg-black border border-yellow-500/30 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded font-black text-yellow-500 text-sm md:text-lg shadow-inner">
+                      <span className="bg-[#00112E] border border-brand-accent/30 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded font-black text-brand-orange-400 text-sm md:text-lg shadow-inner">
                         {match.score1 !== null ? match.score1 : '-'}
                       </span>
                     </div>
@@ -151,27 +167,12 @@ const KnockoutBracket: React.FC = () => {
                       <span className={`font-black text-sm md:text-base truncate ${match.team2 === 'Brasil' ? 'text-[#009B3A] drop-shadow-[0_0_5px_rgba(0,155,58,0.8)]' : 'text-gray-100'}`}>
                         {match.team2}
                       </span>
-                      <span className="bg-black border border-yellow-500/30 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded font-black text-yellow-500 text-sm md:text-lg shadow-inner">
+                      <span className="bg-[#00112E] border border-brand-accent/30 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded font-black text-brand-orange-400 text-sm md:text-lg shadow-inner">
                         {match.score2 !== null ? match.score2 : '-'}
                       </span>
                     </div>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-12 w-full max-w-[280px] mx-auto">
-            <h4 className="text-center font-bold text-gray-500 mb-4 uppercase tracking-wider text-xs md:text-sm">Disputa 3º Lugar</h4>
-            {knockout.thirdPlace.map((match) => (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                key={match.id} 
-                className="relative flex justify-center opacity-70 hover:opacity-100 transition-opacity"
-              >
-                <MatchCard match={match} />
               </motion.div>
             ))}
           </div>
