@@ -103,40 +103,73 @@ const KnockoutBracket: React.FC = () => {
           ))}
         </div>
 
-        {/* Final e 3º Lugar */}
-        <div className="flex-1 flex flex-col justify-center gap-16 relative">
+        {/* Final e 3º Lugar (Isolados e Destacados) */}
+        <div className="flex-1 flex flex-col justify-center ml-8 md:ml-16 relative">
           
-          <div className="relative mt-8 md:mt-0">
-            <h4 className="text-center font-bold text-brand-primary mb-4 uppercase tracking-wider text-sm bg-[#FAFAF9] sticky top-0 z-20">Final</h4>
+          {/* Caixa Isolada VIP para a Final */}
+          <div className="bg-gradient-to-b from-gray-900 via-black to-gray-900 p-6 md:p-10 rounded-3xl shadow-[0_0_50px_rgba(255,215,0,0.15)] border border-yellow-600/30 flex flex-col items-center justify-center relative min-w-[280px]">
+            {/* Efeitos de Luz de Fundo */}
+            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-yellow-500 to-transparent opacity-50"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.15)_0%,transparent_70%)] rounded-3xl pointer-events-none"></div>
+            
+            {/* Troféu SVG */}
+            <svg className="w-12 h-12 md:w-16 md:h-16 text-yellow-500 mb-4 drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+              <path d="M4 22h16"></path>
+              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+            </svg>
+
+            <h4 className="text-center font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 mb-8 uppercase tracking-[0.2em] text-lg md:text-xl drop-shadow-sm">A Grande Final</h4>
+            
             {knockout.final.map((match) => (
               <motion.div 
-                initial={{ scale: 0.8, opacity: 0, y: 20 }}
+                initial={{ scale: 0.8, opacity: 0, y: 30 }}
                 whileInView={{ scale: 1, opacity: 1, y: 0 }}
-                transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
+                transition={{ type: "spring", bounce: 0.5, duration: 1 }}
                 key={match.id} 
-                className="relative flex justify-center mt-2"
+                className="relative w-full z-10"
               >
-                {/* Glow Effect Back */}
-                <div className="absolute inset-0 bg-brand-accent/30 blur-lg rounded-full animate-pulse scale-125"></div>
-                
-                <div className="bg-gradient-to-tr from-yellow-500 via-brand-accent to-yellow-400 p-[2px] rounded-xl shadow-lg relative z-10 hover:-translate-y-1 transition-transform duration-300">
-                  <div className="bg-white rounded-lg w-full max-w-[13rem] md:max-w-[16rem] overflow-hidden">
-                    <MatchCard match={match} />
+                {/* Card Customizado da Final */}
+                <div className="bg-gradient-to-br from-yellow-900/40 to-black p-[1px] rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500">
+                  <div className="bg-gray-900 rounded-xl p-4 md:p-5 flex flex-col gap-3 border border-yellow-500/20">
+                    <div className="text-[10px] md:text-xs text-yellow-500/80 text-center font-bold uppercase tracking-widest bg-black/40 -mx-4 md:-mx-5 -mt-4 md:-mt-5 pt-2 pb-1.5 mb-2 rounded-t-xl border-b border-yellow-500/20">
+                      {match.date}
+                    </div>
+                    
+                    <div className="flex justify-between items-center gap-4">
+                      <span className={`font-black text-sm md:text-base truncate ${match.team1 === 'Brasil' ? 'text-[#009B3A] drop-shadow-[0_0_5px_rgba(0,155,58,0.8)]' : 'text-gray-100'}`}>
+                        {match.team1}
+                      </span>
+                      <span className="bg-black border border-yellow-500/30 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded font-black text-yellow-500 text-sm md:text-lg shadow-inner">
+                        {match.score1 !== null ? match.score1 : '-'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center gap-4">
+                      <span className={`font-black text-sm md:text-base truncate ${match.team2 === 'Brasil' ? 'text-[#009B3A] drop-shadow-[0_0_5px_rgba(0,155,58,0.8)]' : 'text-gray-100'}`}>
+                        {match.team2}
+                      </span>
+                      <span className="bg-black border border-yellow-500/30 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded font-black text-yellow-500 text-sm md:text-lg shadow-inner">
+                        {match.score2 !== null ? match.score2 : '-'}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <div>
-            <h4 className="text-center font-bold text-gray-500 mb-4 uppercase tracking-wider text-sm bg-[#FAFAF9] sticky top-0 z-20">Disputa 3º Lugar</h4>
+          <div className="mt-12 w-full max-w-[280px] mx-auto">
+            <h4 className="text-center font-bold text-gray-500 mb-4 uppercase tracking-wider text-xs md:text-sm">Disputa 3º Lugar</h4>
             {knockout.thirdPlace.map((match) => (
               <motion.div 
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 key={match.id} 
-                className="relative flex justify-center"
+                className="relative flex justify-center opacity-70 hover:opacity-100 transition-opacity"
               >
                 <MatchCard match={match} />
               </motion.div>
