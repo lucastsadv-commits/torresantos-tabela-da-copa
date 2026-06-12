@@ -3,35 +3,63 @@ import { motion } from 'framer-motion';
 import type { KnockoutMatch } from '../data/copa2026';
 import { useTournament } from '../context/TournamentContext';
 
-const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => (
-  <div className="bg-white p-2 md:p-3 rounded-lg shadow-md border border-gray-100 flex flex-col gap-1.5 w-full max-w-[11rem] md:max-w-[14rem] relative z-10 hover:border-brand-accent transition-colors">
-    <div className="text-[9px] md:text-[10px] text-gray-400 text-center font-bold uppercase tracking-widest bg-gray-50 -mx-2 md:-mx-3 -mt-2 md:-mt-3 pt-1.5 pb-1 mb-1 rounded-t-lg border-b border-gray-100">
+const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => {
+  // Destaca se o Brasil estiver jogando, ou se for um placeholder de chave que contenha o Grupo C
+  const isBrazilPath = 
+    match.team1 === 'Brasil' || match.team2 === 'Brasil' ||
+    (match.team1.includes('º') && match.team1.includes('C')) ||
+    (match.team2.includes('º') && match.team2.includes('C'));
+
+  return (
+  <div className={`p-2 md:p-3 rounded-lg shadow-md flex flex-col gap-1.5 w-full max-w-[11rem] md:max-w-[14rem] relative z-10 transition-all ${
+    isBrazilPath 
+      ? 'bg-gradient-to-br from-white to-[#009B3A]/5 border-2 border-[#009B3A]/60 shadow-[0_0_15px_rgba(0,155,58,0.2)] md:scale-105' 
+      : 'bg-white border border-gray-100 hover:border-brand-accent'
+  }`}>
+    <div className={`text-[9px] md:text-[10px] text-center font-bold uppercase tracking-widest -mx-2 md:-mx-3 -mt-2 md:-mt-3 pt-1.5 pb-1 mb-1 rounded-t-lg border-b ${
+      isBrazilPath ? 'bg-[#009B3A] text-white border-[#009B3A]' : 'bg-gray-50 text-gray-400 border-gray-100'
+    }`}>
       {match.date}
     </div>
     
     <div className="flex justify-between items-center px-1">
-      <span className="font-medium text-xs text-gray-800 truncate max-w-[80px] md:max-w-[120px]">{match.team1}</span>
-      <span className="bg-gray-100 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded font-bold text-brand-primary text-xs md:text-sm">
+      <span className={`font-medium text-xs truncate max-w-[80px] md:max-w-[120px] ${match.team1 === 'Brasil' ? 'font-extrabold text-[#009B3A]' : 'text-gray-800'}`}>
+        {match.team1}
+      </span>
+      <span className={`w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded font-bold text-xs md:text-sm ${
+        isBrazilPath ? 'bg-[#FEDF00]/20 text-[#009B3A]' : 'bg-gray-100 text-brand-primary'
+      }`}>
         {match.score1 !== null ? match.score1 : '-'}
       </span>
     </div>
     <div className="flex justify-between items-center px-1">
-      <span className="font-medium text-xs text-gray-800 truncate max-w-[80px] md:max-w-[120px]">{match.team2}</span>
-      <span className="bg-gray-100 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded font-bold text-brand-primary text-xs md:text-sm">
+      <span className={`font-medium text-xs truncate max-w-[80px] md:max-w-[120px] ${match.team2 === 'Brasil' ? 'font-extrabold text-[#009B3A]' : 'text-gray-800'}`}>
+        {match.team2}
+      </span>
+      <span className={`w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded font-bold text-xs md:text-sm ${
+        isBrazilPath ? 'bg-[#FEDF00]/20 text-[#009B3A]' : 'bg-gray-100 text-brand-primary'
+      }`}>
         {match.score2 !== null ? match.score2 : '-'}
       </span>
     </div>
   </div>
-);
+)};
 
 const KnockoutBracket: React.FC = () => {
   const { knockout } = useTournament();
 
   return (
     <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20 overflow-x-auto">
-      <h3 className="font-heading text-2xl md:text-3xl font-extrabold text-brand-primary text-center mb-16">
+      <h3 className="font-heading text-2xl md:text-3xl font-extrabold text-brand-primary text-center mb-4">
         Fase Final (Mata-Mata)
       </h3>
+      
+      <div className="flex justify-center items-center gap-2 mb-12">
+        <div className="w-3 h-3 rounded-full bg-[#009B3A] shadow-[0_0_8px_rgba(0,155,58,0.5)]"></div>
+        <p className="text-xs md:text-sm text-gray-500 font-medium">
+          Caminhos em destaque indicam possíveis cruzamentos do Brasil
+        </p>
+      </div>
 
       <div className="min-w-[800px] md:min-w-[1100px] flex justify-between gap-2 md:gap-4 pb-10">
         
