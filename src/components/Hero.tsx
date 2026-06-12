@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
             </h1>
             <div className="w-16 md:w-24 h-1 bg-brand-accent mx-auto lg:mx-0 rounded-full mb-4 md:mb-6 shadow-[0_0_15px_rgba(179,81,32,0.6)]"></div>
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto lg:mx-0">
-              Acompanhe todos os jogos da Copa de 2026 com exclusividade. Uma cortesia da <strong className="text-brand-orange-400">Torresantos Advocacia</strong>. Trabalhamos com excelência na defesa dos seus direitos, enquanto você aproveita cada lance.
+              Acompanhe todos os jogos da Copa de 2026 com exclusividade. Uma cortesia da <strong className="text-brand-orange-400">Torresantos Advocacia</strong>.
             </p>
           </motion.div>
 
