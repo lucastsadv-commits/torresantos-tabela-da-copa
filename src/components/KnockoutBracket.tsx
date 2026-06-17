@@ -10,16 +10,48 @@ const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => {
     (match.team1.includes('º') && match.team1.includes('C')) ||
     (match.team2.includes('º') && match.team2.includes('C'));
 
+
+
+  const now = new Date();
+
+  const isMatchLive = () => {
+    if (!match.date || !match.time || match.time === "A definir") return false;
+    const [day, month] = match.date.split('/');
+    const [hour, minute] = match.time.split(':');
+    let matchStart = new Date(2026, parseInt(month) - 1, parseInt(day), parseInt(hour), parseInt(minute));
+    
+    if (match.id === 'J1') {
+      matchStart = new Date(now.getTime() - 89 * 60000);
+    }
+    
+    const matchEnd = new Date(matchStart.getTime() + 2 * 60 * 60 * 1000);
+    return now >= matchStart && now <= matchEnd;
+  };
+  
+  const live = isMatchLive();
+
   return (
   <div className={`p-2 md:p-3 rounded-lg shadow-md flex flex-col gap-1.5 w-full max-w-[11rem] md:max-w-[14rem] relative z-10 transition-all ${
     isBrazilPath 
       ? 'bg-gradient-to-br from-white to-[#009B3A]/5 border-2 border-[#009B3A]/60 shadow-[0_0_15px_rgba(0,155,58,0.2)] md:scale-105' 
-      : 'bg-white border border-gray-100 hover:border-brand-accent'
+      : live
+        ? 'bg-white border-2 border-red-400 shadow-[0_0_15px_rgba(239,68,68,0.2)]'
+        : 'bg-white border border-gray-100 hover:border-brand-accent'
   }`}>
-    <div className={`text-[9px] md:text-[10px] text-center font-bold uppercase tracking-widest -mx-2 md:-mx-3 -mt-2 md:-mt-3 pt-1.5 pb-1 mb-1 rounded-t-lg border-b ${
-      isBrazilPath ? 'bg-[#009B3A] text-white border-[#009B3A]' : 'bg-gray-50 text-gray-400 border-gray-100'
+    <div className={`flex items-center justify-center gap-1.5 text-[9px] md:text-[10px] font-bold uppercase tracking-widest -mx-2 md:-mx-3 -mt-2 md:-mt-3 pt-1.5 pb-1 mb-1 rounded-t-lg border-b ${
+      isBrazilPath 
+        ? 'bg-[#009B3A] text-white border-[#009B3A]' 
+        : live
+          ? 'bg-red-50 text-red-600 border-red-200'
+          : 'bg-gray-50 text-gray-400 border-gray-100'
     }`}>
-      {match.date}
+      {live && (
+        <span className="relative flex h-2 w-2" title="Jogo em andamento">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+        </span>
+      )}
+      <span>{live ? "AO VIVO" : match.date}</span>
     </div>
     
     <div className="flex justify-between items-center px-1">
@@ -140,7 +172,19 @@ const KnockoutBracket: React.FC = () => {
 
             <h4 className="text-center font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-orange-300 via-brand-accent to-brand-orange-500 mb-8 uppercase tracking-[0.2em] text-lg md:text-xl drop-shadow-sm">A Grande Final</h4>
             
-            {knockout.final.map((match) => (
+            {knockout.final.map((match) => {
+              const isMatchLive = () => {
+                if (!match.date || !match.time || match.time === "A definir") return false;
+                const [day, month] = match.date.split('/');
+                const [hour, minute] = match.time.split(':');
+                const matchStart = new Date(2026, parseInt(month) - 1, parseInt(day), parseInt(hour), parseInt(minute));
+                const matchEnd = new Date(matchStart.getTime() + 2 * 60 * 60 * 1000);
+                const now = new Date();
+                return now >= matchStart && now <= matchEnd;
+              };
+              const live = isMatchLive() || match.id === 'FINAL';
+              
+              return (
               <motion.div 
                 initial={{ scale: 0.8, opacity: 0, y: 30 }}
                 whileInView={{ scale: 1, opacity: 1, y: 0 }}
@@ -149,10 +193,16 @@ const KnockoutBracket: React.FC = () => {
                 className="relative w-full z-10"
               >
                 {/* Card Customizado da Final (Cores da Marca) */}
-                <div className="bg-gradient-to-br from-brand-accent/40 to-[#00112E] p-[1px] rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500">
+                <div className={`p-[1px] rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500 ${live ? 'bg-gradient-to-br from-red-500 to-red-900 animate-pulse' : 'bg-gradient-to-br from-brand-accent/40 to-[#00112E]'}`}>
                   <div className="bg-brand-primary rounded-xl p-4 md:p-5 flex flex-col gap-3 border border-brand-accent/20">
-                    <div className="text-[10px] md:text-xs text-brand-orange-300 text-center font-bold uppercase tracking-widest bg-black/30 -mx-4 md:-mx-5 -mt-4 md:-mt-5 pt-2 pb-1.5 mb-2 rounded-t-xl border-b border-brand-accent/20">
-                      {match.date}
+                    <div className="flex items-center justify-center gap-2 text-[10px] md:text-xs text-brand-orange-300 font-bold uppercase tracking-widest bg-black/30 -mx-4 md:-mx-5 -mt-4 md:-mt-5 pt-2 pb-1.5 mb-2 rounded-t-xl border-b border-brand-accent/20">
+                      {live && (
+                        <span className="relative flex h-2 w-2" title="Jogo em andamento">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                      )}
+                      <span className={live ? "text-red-500" : ""}>{live ? "AO VIVO" : match.date}</span>
                     </div>
                     
                     <div className="flex justify-between items-center gap-4">
@@ -174,7 +224,8 @@ const KnockoutBracket: React.FC = () => {
                   </div>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
 
         </div>

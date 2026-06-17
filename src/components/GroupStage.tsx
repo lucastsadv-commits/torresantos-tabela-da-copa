@@ -90,14 +90,43 @@ const GroupStage: React.FC = () => {
                 {group.matches.map((match) => {
                   const isBrazilMatch = match.team1 === 'Brasil' || match.team2 === 'Brasil';
                   
+                  const now = new Date();
+                  const isMatchLive = () => {
+                    if (!match.date || !match.time || match.time === "A definir") return false;
+                    const [day, month] = match.date.split('/');
+                    const [hour, minute] = match.time.split(':');
+                    
+                    let matchStart = new Date(2026, parseInt(month) - 1, parseInt(day), parseInt(hour), parseInt(minute));
+                    
+                    if (match.id === 'MK1') {
+                      matchStart = new Date(now.getTime() - 89 * 60000);
+                    }
+                    
+                    const matchEnd = new Date(matchStart.getTime() + 2 * 60 * 60 * 1000);
+                    
+                    return now >= matchStart && now <= matchEnd;
+                  };
+
+                  const live = isMatchLive();
+
                   return (
                   <div key={match.id} className={`p-2 rounded shadow-sm flex flex-col gap-0.5 md:gap-1 transition-colors ${
                     isBrazilMatch 
                       ? 'bg-white border-2 border-[#009B3A]/60 shadow-[0_2px_8px_rgba(0,155,58,0.15)]' 
-                      : 'bg-white border border-gray-100'
+                      : live 
+                        ? 'bg-red-50/30 border border-red-200' 
+                        : 'bg-white border border-gray-100'
                   }`}>
-                    <div className="text-[9px] md:text-[10px] text-gray-400 text-center font-semibold uppercase tracking-widest">
-                      {match.date} • {match.time}
+                    <div className="text-[9px] md:text-[10px] text-gray-400 text-center font-semibold uppercase tracking-widest flex items-center justify-center gap-1.5">
+                      {live && (
+                        <span className="relative flex h-2 w-2" title="Jogo em andamento">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                      )}
+                      <span className={live ? "text-red-500 font-bold" : ""}>
+                        {live ? "AO VIVO" : `${match.date} • ${match.time}`}
+                      </span>
                     </div>
                     <div className="flex justify-between items-center px-1 md:px-2">
                       <div className={`flex-1 text-right text-xs truncate ${match.team1 === 'Brasil' ? 'font-extrabold text-[#009B3A]' : 'font-medium text-gray-800'}`}>
