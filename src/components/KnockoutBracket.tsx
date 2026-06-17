@@ -12,23 +12,9 @@ const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => {
 
 
 
-  const now = new Date();
-
-  const isMatchLive = () => {
-    if (!match.date || !match.time || match.time === "A definir") return false;
-    const [day, month] = match.date.split('/');
-    const [hour, minute] = match.time.split(':');
-    let matchStart = new Date(2026, parseInt(month) - 1, parseInt(day), parseInt(hour), parseInt(minute));
-    
-    if (match.id === 'J1') {
-      matchStart = new Date(now.getTime() - 89 * 60000);
-    }
-    
-    const matchEnd = new Date(matchStart.getTime() + 2 * 60 * 60 * 1000);
-    return now >= matchStart && now <= matchEnd;
-  };
-  
-  const live = isMatchLive();
+  const isLive = match.status === 'IN_PLAY' || match.status === 'PAUSED';
+  const live = isLive || match.id === 'J1';
+  const liveMinute = isLive ? match.minute : (live ? "74'" : null);
 
   return (
   <div className={`p-2 md:p-3 rounded-lg shadow-md flex flex-col gap-1.5 w-full max-w-[11rem] md:max-w-[14rem] relative z-10 transition-all ${
@@ -51,7 +37,7 @@ const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
         </span>
       )}
-      <span>{live ? "AO VIVO" : match.date}</span>
+      <span>{live ? `AO VIVO${liveMinute ? ` (${liveMinute})` : ''}` : match.date}</span>
     </div>
     
     <div className="flex justify-between items-center px-1">
@@ -173,16 +159,9 @@ const KnockoutBracket: React.FC = () => {
             <h4 className="text-center font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-orange-300 via-brand-accent to-brand-orange-500 mb-8 uppercase tracking-[0.2em] text-lg md:text-xl drop-shadow-sm">A Grande Final</h4>
             
             {knockout.final.map((match) => {
-              const isMatchLive = () => {
-                if (!match.date || !match.time || match.time === "A definir") return false;
-                const [day, month] = match.date.split('/');
-                const [hour, minute] = match.time.split(':');
-                const matchStart = new Date(2026, parseInt(month) - 1, parseInt(day), parseInt(hour), parseInt(minute));
-                const matchEnd = new Date(matchStart.getTime() + 2 * 60 * 60 * 1000);
-                const now = new Date();
-                return now >= matchStart && now <= matchEnd;
-              };
-              const live = isMatchLive() || match.id === 'FINAL';
+              const isLive = match.status === 'IN_PLAY' || match.status === 'PAUSED';
+              const live = isLive || match.id === 'FINAL';
+              const liveMinute = isLive ? match.minute : (live ? "74'" : null);
               
               return (
               <motion.div 
@@ -202,7 +181,7 @@ const KnockoutBracket: React.FC = () => {
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                         </span>
                       )}
-                      <span className={live ? "text-red-500" : ""}>{live ? "AO VIVO" : match.date}</span>
+                      <span className={live ? "text-red-500" : ""}>{live ? `AO VIVO${liveMinute ? ` (${liveMinute})` : ''}` : match.date}</span>
                     </div>
                     
                     <div className="flex justify-between items-center gap-4">

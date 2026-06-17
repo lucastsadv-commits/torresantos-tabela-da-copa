@@ -7,6 +7,8 @@ export type Match = {
   date: string;
   time: string;
   location: string;
+  status?: string;
+  minute?: string | null;
 };
 
 export type TeamStats = {
@@ -36,6 +38,8 @@ export type KnockoutMatch = {
   time: string;
   location: string;
   nextMatchId?: string;
+  status?: string;
+  minute?: string | null;
 };
 
 export const groupsData: Group[] = [

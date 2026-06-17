@@ -90,24 +90,11 @@ const GroupStage: React.FC = () => {
                 {group.matches.map((match) => {
                   const isBrazilMatch = match.team1 === 'Brasil' || match.team2 === 'Brasil';
                   
-                  const now = new Date();
-                  const isMatchLive = () => {
-                    if (!match.date || !match.time || match.time === "A definir") return false;
-                    const [day, month] = match.date.split('/');
-                    const [hour, minute] = match.time.split(':');
-                    
-                    let matchStart = new Date(2026, parseInt(month) - 1, parseInt(day), parseInt(hour), parseInt(minute));
-                    
-                    if (match.id === 'MK1') {
-                      matchStart = new Date(now.getTime() - 89 * 60000);
-                    }
-                    
-                    const matchEnd = new Date(matchStart.getTime() + 2 * 60 * 60 * 1000);
-                    
-                    return now >= matchStart && now <= matchEnd;
-                  };
-
-                  const live = isMatchLive();
+                  const isLive = match.status === 'IN_PLAY' || match.status === 'PAUSED';
+                  
+                  // Se for teste local: 
+                  const live = isLive || match.id === 'MK1';
+                  const liveMinute = isLive ? match.minute : (live ? "74'" : null);
 
                   return (
                   <div key={match.id} className={`p-2 rounded shadow-sm flex flex-col gap-0.5 md:gap-1 transition-colors ${
@@ -125,7 +112,7 @@ const GroupStage: React.FC = () => {
                         </span>
                       )}
                       <span className={live ? "text-red-500 font-bold" : ""}>
-                        {live ? "AO VIVO" : `${match.date} • ${match.time}`}
+                        {live ? `AO VIVO${liveMinute ? ` (${liveMinute})` : ''}` : `${match.date} • ${match.time}`}
                       </span>
                     </div>
                     <div className="flex justify-between items-center px-1 md:px-2">
