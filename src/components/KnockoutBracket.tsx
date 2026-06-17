@@ -12,9 +12,8 @@ const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => {
 
 
 
-  const isLive = match.status === 'IN_PLAY' || match.status === 'PAUSED';
-  const live = isLive || match.id === 'J1';
-  const liveMinute = isLive ? match.minute : (live ? "74'" : null);
+  const live = match.status === 'IN_PLAY' || match.status === 'PAUSED';
+  const liveMinute = live ? match.minute : null;
 
   return (
   <div className={`p-2 md:p-3 rounded-lg shadow-md flex flex-col gap-1.5 w-full max-w-[11rem] md:max-w-[14rem] relative z-10 transition-all ${
@@ -159,9 +158,8 @@ const KnockoutBracket: React.FC = () => {
             <h4 className="text-center font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-orange-300 via-brand-accent to-brand-orange-500 mb-8 uppercase tracking-[0.2em] text-lg md:text-xl drop-shadow-sm">A Grande Final</h4>
             
             {knockout.final.map((match) => {
-              const isLive = match.status === 'IN_PLAY' || match.status === 'PAUSED';
-              const live = isLive || match.id === 'FINAL';
-              const liveMinute = isLive ? match.minute : (live ? "74'" : null);
+              const live = match.status === 'IN_PLAY' || match.status === 'PAUSED';
+              const liveMinute = live ? match.minute : null;
               
               return (
               <motion.div 
