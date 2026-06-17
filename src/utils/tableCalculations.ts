@@ -11,6 +11,8 @@ export function calculateGroups(matches: Match[], initialGroups: Group[]): Group
       if (liveMatch) {
         groupMatch.score1 = liveMatch.score1;
         groupMatch.score2 = liveMatch.score2;
+        groupMatch.status = liveMatch.status;
+        groupMatch.minute = liveMatch.minute;
       }
     });
 
@@ -90,6 +92,8 @@ export function updateKnockout(matches: Match[], initialKnockout: Record<string,
       if (liveMatch) {
         koMatch.score1 = liveMatch.score1;
         koMatch.score2 = liveMatch.score2;
+        koMatch.status = liveMatch.status;
+        koMatch.minute = liveMatch.minute;
         // Na vida real, a API poderia atualizar team1 e team2 também caso os cruzamentos sejam automáticos
       }
     });
