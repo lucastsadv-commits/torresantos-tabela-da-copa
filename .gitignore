@@ -38,3 +38,7 @@ supabase/
 test-*.js
 *-test.js
 *.test.js
+
+# Test scratchpads
+*.cjs
+all_matches.json
