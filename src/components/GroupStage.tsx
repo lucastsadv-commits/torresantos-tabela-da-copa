@@ -57,8 +57,6 @@ const GroupStage: React.FC = () => {
                 </thead>
                 <tbody>
                   {group.teams
-                    // Ordenação simples por pontos (isso pode ser melhorado na lógica de negócio)
-                    .sort((a, b) => b.points - a.points)
                     .map((team, teamIdx) => {
                       const isBrazil = team.name === 'Brasil';
                       return (

@@ -1,0 +1,955 @@
+◇ injected env (2) from .env // tip: ⌘ override existing { override: true }
+[
+  {
+    "id": "MH1",
+    "team1": "Espanha",
+    "team2": "Cabo Verde",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MH2",
+    "team1": "Arábia Saudita",
+    "team2": "Uruguai",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MA2",
+    "team1": "Coreia do Sul",
+    "team2": "Tchéquia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MB3",
+    "team1": "Suíça",
+    "team2": "Bósnia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MB4",
+    "team1": "Canadá",
+    "team2": "Catar",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MB5",
+    "team1": "Suíça",
+    "team2": "Canadá",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MB6",
+    "team1": "Bósnia",
+    "team2": "Catar",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MC1",
+    "team1": "Brasil",
+    "team2": "Marrocos",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MC2",
+    "team1": "Haiti",
+    "team2": "Escócia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MC3",
+    "team1": "Escócia",
+    "team2": "Marrocos",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MC4",
+    "team1": "Brasil",
+    "team2": "Haiti",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MC5",
+    "team1": "Escócia",
+    "team2": "Brasil",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MC6",
+    "team1": "Marrocos",
+    "team2": "Haiti",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MD1",
+    "team1": "Estados Unidos",
+    "team2": "Paraguai",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MD2",
+    "team1": "Austrália",
+    "team2": "Turquia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MD3",
+    "team1": "Estados Unidos",
+    "team2": "Austrália",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MD4",
+    "team1": "Turquia",
+    "team2": "Paraguai",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MD5",
+    "team1": "Turquia",
+    "team2": "Estados Unidos",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MD6",
+    "team1": "Paraguai",
+    "team2": "Austrália",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "ME2",
+    "team1": "Costa do Marfim",
+    "team2": "Equador",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_1",
+    "team1": "1º Grupo A",
+    "team2": "3º C/D/E/F/G",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_2",
+    "team1": "2º Grupo B",
+    "team2": "2º Grupo I",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_3",
+    "team1": "1º Grupo C",
+    "team2": "3º A/B/F/G/H",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_4",
+    "team1": "1º Grupo L",
+    "team2": "3º E/H/I/J/K",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_5",
+    "team1": "2º Grupo E",
+    "team2": "2º Grupo J",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_6",
+    "team1": "1º Grupo I",
+    "team2": "3º C/D/F/G/H",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_7",
+    "team1": "1º Grupo D",
+    "team2": "3º A/B/E/I/J",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_8",
+    "team1": "2º Grupo G",
+    "team2": "2º Grupo K",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_9",
+    "team1": "1º Grupo B",
+    "team2": "3º E/F/G/I/J",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_10",
+    "team1": "2º Grupo A",
+    "team2": "2º Grupo H",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_11",
+    "team1": "1º Grupo F",
+    "team2": "3º A/B/C/H/K",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_12",
+    "team1": "1º Grupo K",
+    "team2": "3º D/E/I/J/L",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_13",
+    "team1": "1º Grupo E",
+    "team2": "3º A/B/C/D/K",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_14",
+    "team1": "2º Grupo C",
+    "team2": "2º Grupo L",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_15",
+    "team1": "1º Grupo H",
+    "team2": "3º C/D/E/J/L",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R32_16",
+    "team1": "1º Grupo G",
+    "team2": "3º A/D/H/K/L",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R16_1",
+    "team1": "Venc. R32_1",
+    "team2": "Venc. R32_2",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R16_2",
+    "team1": "Venc. R32_3",
+    "team2": "Venc. R32_4",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R16_3",
+    "team1": "Venc. R32_5",
+    "team2": "Venc. R32_6",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R16_4",
+    "team1": "Venc. R32_7",
+    "team2": "Venc. R32_8",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R16_5",
+    "team1": "Venc. R32_9",
+    "team2": "Venc. R32_10",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R16_6",
+    "team1": "Venc. R32_11",
+    "team2": "Venc. R32_12",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R16_7",
+    "team1": "Venc. R32_13",
+    "team2": "Venc. R32_14",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "R16_8",
+    "team1": "Venc. R32_15",
+    "team2": "Venc. R32_16",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "QF_1",
+    "team1": "Venc. R16_1",
+    "team2": "Venc. R16_2",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "QF_2",
+    "team1": "Venc. R16_3",
+    "team2": "Venc. R16_4",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "QF_3",
+    "team1": "Venc. R16_5",
+    "team2": "Venc. R16_6",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "QF_4",
+    "team1": "Venc. R16_7",
+    "team2": "Venc. R16_8",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "SF_1",
+    "team1": "Venc. QF_1",
+    "team2": "Venc. QF_2",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "SF_2",
+    "team1": "Venc. QF_3",
+    "team2": "Venc. QF_4",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "3RD_1",
+    "team1": "Perd. SF_1",
+    "team2": "Perd. SF_2",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "FIN_1",
+    "team1": "Venc. SF_1",
+    "team2": "Venc. SF_2",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MA1",
+    "team1": "México",
+    "team2": "África do Sul",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MA3",
+    "team1": "Tchéquia",
+    "team2": "África do Sul",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MA4",
+    "team1": "México",
+    "team2": "Coreia do Sul",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MA5",
+    "team1": "Tchéquia",
+    "team2": "México",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MA6",
+    "team1": "África do Sul",
+    "team2": "Coreia do Sul",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MB1",
+    "team1": "Canadá",
+    "team2": "Bósnia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MB2",
+    "team1": "Catar",
+    "team2": "Suíça",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MJ1",
+    "team1": "Argentina",
+    "team2": "Argélia",
+    "score1": 3,
+    "score2": 0
+  },
+  {
+    "id": "MJ2",
+    "team1": "Áustria",
+    "team2": "Jordânia",
+    "score1": 3,
+    "score2": 1
+  },
+  {
+    "id": "ML5",
+    "team1": "Panamá",
+    "team2": "Inglaterra",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "ML6",
+    "team1": "Croácia",
+    "team2": "Gana",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J1",
+    "team1": "1º E",
+    "team2": "3º ABCD",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J2",
+    "team1": "1º I",
+    "team2": "3º CDFGH",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J3",
+    "team1": "2º A",
+    "team2": "2º B",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J4",
+    "team1": "1º F",
+    "team2": "2º C",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J5",
+    "team1": "2º K",
+    "team2": "2º L",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J6",
+    "team1": "1º H",
+    "team2": "2º J",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J7",
+    "team1": "1º D",
+    "team2": "3º BEFIJ",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J8",
+    "team1": "1º G",
+    "team2": "3º AEHIJ",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J9",
+    "team1": "1º C",
+    "team2": "2º F",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J10",
+    "team1": "2º E",
+    "team2": "2º I",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J11",
+    "team1": "1º A",
+    "team2": "3º CEFHI",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J12",
+    "team1": "1º L",
+    "team2": "3º EHIJK",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J13",
+    "team1": "1º J",
+    "team2": "2º H",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J14",
+    "team1": "2º D",
+    "team2": "2º G",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J15",
+    "team1": "1º B",
+    "team2": "3º EFGIJ",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "J16",
+    "team1": "1º K",
+    "team2": "3º DEIJL",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "O1",
+    "team1": "Venc. J1",
+    "team2": "Venc. J2",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "ME1",
+    "team1": "Alemanha",
+    "team2": "Curaçao",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "ME3",
+    "team1": "Alemanha",
+    "team2": "Costa do Marfim",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "ME4",
+    "team1": "Equador",
+    "team2": "Curaçao",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "O2",
+    "team1": "Venc. J3",
+    "team2": "Venc. J4",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "ME5",
+    "team1": "Equador",
+    "team2": "Alemanha",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "ME6",
+    "team1": "Curaçao",
+    "team2": "Costa do Marfim",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MF1",
+    "team1": "Países Baixos",
+    "team2": "Japão",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MF2",
+    "team1": "Suécia",
+    "team2": "Tunísia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MF3",
+    "team1": "Países Baixos",
+    "team2": "Suécia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MF4",
+    "team1": "Tunísia",
+    "team2": "Japão",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MF5",
+    "team1": "Japão",
+    "team2": "Suécia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MF6",
+    "team1": "Tunísia",
+    "team2": "Países Baixos",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MG1",
+    "team1": "Bélgica",
+    "team2": "Egito",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MG3",
+    "team1": "Bélgica",
+    "team2": "Irã",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MG4",
+    "team1": "Nova Zelândia",
+    "team2": "Egito",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MG5",
+    "team1": "Egito",
+    "team2": "Irã",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MG6",
+    "team1": "Nova Zelândia",
+    "team2": "Bélgica",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MH3",
+    "team1": "Espanha",
+    "team2": "Arábia Saudita",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MH4",
+    "team1": "Uruguai",
+    "team2": "Cabo Verde",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MH5",
+    "team1": "Cabo Verde",
+    "team2": "Arábia Saudita",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MH6",
+    "team1": "Uruguai",
+    "team2": "Espanha",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MI3",
+    "team1": "França",
+    "team2": "Iraque",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MI4",
+    "team1": "Noruega",
+    "team2": "Senegal",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MI5",
+    "team1": "Noruega",
+    "team2": "França",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MI6",
+    "team1": "Senegal",
+    "team2": "Iraque",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MJ3",
+    "team1": "Argentina",
+    "team2": "Áustria",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MJ4",
+    "team1": "Jordânia",
+    "team2": "Argélia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MJ5",
+    "team1": "Argélia",
+    "team2": "Áustria",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MJ6",
+    "team1": "Jordânia",
+    "team2": "Argentina",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MK2",
+    "team1": "Uzbequistão",
+    "team2": "Colômbia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MK3",
+    "team1": "Portugal",
+    "team2": "Uzbequistão",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MK4",
+    "team1": "Colômbia",
+    "team2": "Congo (RD)",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "O3",
+    "team1": "Venc. J5",
+    "team2": "Venc. J6",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "O4",
+    "team1": "Venc. J7",
+    "team2": "Venc. J8",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "O5",
+    "team1": "Venc. J9",
+    "team2": "Venc. J10",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "O6",
+    "team1": "Venc. J11",
+    "team2": "Venc. J12",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "O7",
+    "team1": "Venc. J13",
+    "team2": "Venc. J14",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "O8",
+    "team1": "Venc. J15",
+    "team2": "Venc. J16",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "Q1",
+    "team1": "Venc. O1",
+    "team2": "Venc. O2",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "Q2",
+    "team1": "Venc. O3",
+    "team2": "Venc. O4",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MK1",
+    "team1": "Portugal",
+    "team2": "Congo (RD)",
+    "score1": 1,
+    "score2": 1
+  },
+  {
+    "id": "MG2",
+    "team1": "Irã",
+    "team2": "Nova Zelândia",
+    "score1": 2,
+    "score2": 2
+  },
+  {
+    "id": "MI1",
+    "team1": "França",
+    "team2": "Senegal",
+    "score1": 3,
+    "score2": 1
+  },
+  {
+    "id": "MI2",
+    "team1": "Iraque",
+    "team2": "Noruega",
+    "score1": 1,
+    "score2": 4
+  },
+  {
+    "id": "MK5",
+    "team1": "Colômbia",
+    "team2": "Portugal",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "MK6",
+    "team1": "Congo (RD)",
+    "team2": "Uzbequistão",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "ML1",
+    "team1": "Inglaterra",
+    "team2": "Croácia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "ML2",
+    "team1": "Gana",
+    "team2": "Panamá",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "ML3",
+    "team1": "Inglaterra",
+    "team2": "Gana",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "ML4",
+    "team1": "Panamá",
+    "team2": "Croácia",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "Q3",
+    "team1": "Venc. O5",
+    "team2": "Venc. O6",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "Q4",
+    "team1": "Venc. O7",
+    "team2": "Venc. O8",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "S1",
+    "team1": "Venc. Q1",
+    "team2": "Venc. Q2",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "S2",
+    "team1": "Venc. Q3",
+    "team2": "Venc. Q4",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "T3",
+    "team1": "Perdedor S1",
+    "team2": "Perdedor S2",
+    "score1": null,
+    "score2": null
+  },
+  {
+    "id": "FINAL",
+    "team1": "Venc. S1",
+    "team2": "Venc. S2",
+    "score1": null,
+    "score2": null
+  }
+]

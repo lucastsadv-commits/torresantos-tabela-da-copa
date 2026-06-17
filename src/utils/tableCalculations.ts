@@ -27,25 +27,32 @@ export function calculateGroups(matches: Match[], initialGroups: Group[]): Group
 
     // 3. Recalcular baseado nos jogos com placar
     group.matches.forEach(match => {
-      if (match.score1 !== null && match.score2 !== null) {
+      // Garantir que não são strings vazias e nem nulos
+      if (
+        match.score1 !== null && match.score2 !== null && 
+        String(match.score1).trim() !== '' && String(match.score2).trim() !== ''
+      ) {
         const team1 = group.teams.find(t => t.name === match.team1);
         const team2 = group.teams.find(t => t.name === match.team2);
 
         if (team1 && team2) {
+          const s1 = Number(match.score1);
+          const s2 = Number(match.score2);
+
           team1.played += 1;
           team2.played += 1;
 
-          team1.goalsFor += match.score1;
-          team1.goalsAgainst += match.score2;
+          team1.goalsFor += s1;
+          team1.goalsAgainst += s2;
 
-          team2.goalsFor += match.score2;
-          team2.goalsAgainst += match.score1;
+          team2.goalsFor += s2;
+          team2.goalsAgainst += s1;
 
-          if (match.score1 > match.score2) {
+          if (s1 > s2) {
             team1.won += 1;
             team1.points += 3;
             team2.lost += 1;
-          } else if (match.score1 < match.score2) {
+          } else if (s1 < s2) {
             team2.won += 1;
             team2.points += 3;
             team1.lost += 1;
