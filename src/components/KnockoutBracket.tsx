@@ -13,7 +13,6 @@ const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => {
 
 
   const live = match.status === 'IN_PLAY' || match.status === 'PAUSED';
-  const liveMinute = live ? match.minute : null;
 
   return (
   <div className={`p-2 md:p-3 rounded-lg shadow-md flex flex-col gap-1.5 w-full max-w-[11rem] md:max-w-[14rem] relative z-10 transition-all ${
@@ -36,7 +35,7 @@ const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
         </span>
       )}
-      <span>{live ? `AO VIVO${liveMinute ? ` (${liveMinute})` : ''}` : match.date}</span>
+      <span>{live ? 'AO VIVO' : match.date}</span>
     </div>
     
     <div className="flex justify-between items-center px-1">
@@ -159,7 +158,6 @@ const KnockoutBracket: React.FC = () => {
             
             {knockout.final.map((match) => {
               const live = match.status === 'IN_PLAY' || match.status === 'PAUSED';
-              const liveMinute = live ? match.minute : null;
               
               return (
               <motion.div 
@@ -179,7 +177,7 @@ const KnockoutBracket: React.FC = () => {
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                         </span>
                       )}
-                      <span className={live ? "text-red-500" : ""}>{live ? `AO VIVO${liveMinute ? ` (${liveMinute})` : ''}` : match.date}</span>
+                      <span className={live ? "text-red-500" : ""}>{live ? 'AO VIVO' : match.date}</span>
                     </div>
                     
                     <div className="flex justify-between items-center gap-4">

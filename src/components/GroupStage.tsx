@@ -91,7 +91,6 @@ const GroupStage: React.FC = () => {
                   const isBrazilMatch = match.team1 === 'Brasil' || match.team2 === 'Brasil';
                   
                   const live = match.status === 'IN_PLAY' || match.status === 'PAUSED';
-                  const liveMinute = live ? match.minute : null;
 
                   return (
                   <div key={match.id} className={`p-2 rounded shadow-sm flex flex-col gap-0.5 md:gap-1 transition-colors ${
@@ -109,7 +108,7 @@ const GroupStage: React.FC = () => {
                         </span>
                       )}
                       <span className={live ? "text-red-500 font-bold" : ""}>
-                        {live ? `AO VIVO${liveMinute ? ` (${liveMinute})` : ''}` : `${match.date} • ${match.time}`}
+                        {live ? 'AO VIVO' : `${match.date} • ${match.time}`}
                       </span>
                     </div>
                     <div className="flex justify-between items-center px-1 md:px-2">
