@@ -108,7 +108,7 @@ const GroupStage: React.FC = () => {
                         </span>
                       )}
                       <span className={live ? "text-red-500 font-bold" : ""}>
-                        {live ? 'AO VIVO' : `${match.date} • ${match.time}`}
+                        {live ? `AO VIVO${match.minute ? ` • ${match.minute}` : ''}` : `${match.date} • ${match.time}`}
                       </span>
                     </div>
                     <div className="flex justify-between items-center px-1 md:px-2">

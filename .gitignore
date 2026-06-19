@@ -42,3 +42,6 @@ test-*.js
 # Test scratchpads
 *.cjs
 all_matches.json
+
+# Relatórios
+relatorio_tabela_copa

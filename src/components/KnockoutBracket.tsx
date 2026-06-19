@@ -35,7 +35,7 @@ const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
         </span>
       )}
-      <span>{live ? 'AO VIVO' : match.date}</span>
+      <span>{live ? `AO VIVO${match.minute ? ` • ${match.minute}` : ''}` : match.date}</span>
     </div>
     
     <div className="flex justify-between items-center px-1">
@@ -177,7 +177,7 @@ const KnockoutBracket: React.FC = () => {
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                         </span>
                       )}
-                      <span className={live ? "text-red-500" : ""}>{live ? 'AO VIVO' : match.date}</span>
+                      <span className={live ? "text-red-500" : ""}>{live ? `AO VIVO${match.minute ? ` • ${match.minute}` : ''}` : match.date}</span>
                     </div>
                     
                     <div className="flex justify-between items-center gap-4">
