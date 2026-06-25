@@ -83,21 +83,86 @@ export function calculateGroups(matches: Match[], initialGroups: Group[]): Group
   return newGroups;
 }
 
-export function updateKnockout(matches: Match[], initialKnockout: Record<string, KnockoutMatch[]>): Record<string, KnockoutMatch[]> {
+export function updateKnockout(matches: Match[], initialKnockout: Record<string, KnockoutMatch[]>, groups: Group[] = []): Record<string, KnockoutMatch[]> {
   const newKnockout = JSON.parse(JSON.stringify(initialKnockout));
   
+  // Helper to resolve group placeholders like "1º A" or "2º C"
+  const resolveTeam = (placeholder: string): string => {
+    const matchGroup = placeholder.match(/^([12])º\s+([A-L])$/);
+    if (matchGroup) {
+      const position = parseInt(matchGroup[1], 10);
+      const groupLetter = matchGroup[2];
+      const groupName = `Grupo ${groupLetter}`;
+      const group = groups.find(g => g.name === groupName);
+      if (group && group.teams.length >= position) {
+        const team = group.teams[position - 1];
+        // Only show the team in the bracket if they have played at least 1 match
+        // This acts as a live projection.
+        return team.played > 0 ? team.name : placeholder;
+      }
+    }
+    return placeholder;
+  };
+
+  // Helper to resolve winners/losers from previous knockout matches
+  const resolveKnockout = (placeholder: string): string => {
+    if (placeholder.startsWith('Venc.')) {
+      const matchId = placeholder.split(' ')[1];
+      const match = findMatchById(matchId);
+      // Determine winner if match is finished
+      if (match && match.status === 'FINISHED' && match.score1 !== null && match.score2 !== null) {
+        if (match.score1 > match.score2) return match.team1;
+        if (match.score2 > match.score1) return match.team2;
+      }
+    } else if (placeholder.startsWith('Perdedor')) {
+      const matchId = placeholder.split(' ')[1];
+      const match = findMatchById(matchId);
+      // Determine loser if match is finished
+      if (match && match.status === 'FINISHED' && match.score1 !== null && match.score2 !== null) {
+        if (match.score1 < match.score2) return match.team1;
+        if (match.score2 < match.score1) return match.team2;
+      }
+    }
+    return placeholder;
+  };
+
+  const findMatchById = (id: string): KnockoutMatch | undefined => {
+    for (const stage in newKnockout) {
+      const match = newKnockout[stage].find((m: KnockoutMatch) => m.id === id);
+      if (match) return match;
+    }
+    return undefined;
+  };
+
+  // 1st pass: update with live match data and group standings
   for (const stage in newKnockout) {
     newKnockout[stage].forEach((koMatch: KnockoutMatch) => {
+      koMatch.team1 = resolveTeam(koMatch.team1);
+      koMatch.team2 = resolveTeam(koMatch.team2);
+
       const liveMatch = matches.find(m => m.id === koMatch.id);
       if (liveMatch) {
         koMatch.score1 = liveMatch.score1;
         koMatch.score2 = liveMatch.score2;
         koMatch.status = liveMatch.status;
         koMatch.minute = liveMatch.minute;
-        // Na vida real, a API poderia atualizar team1 e team2 também caso os cruzamentos sejam automáticos
+        
+        // If API sent explicit team names (overriding placeholders)
+        if (liveMatch.team1 && !liveMatch.team1.includes('º')) koMatch.team1 = liveMatch.team1;
+        if (liveMatch.team2 && !liveMatch.team2.includes('º')) koMatch.team2 = liveMatch.team2;
       }
     });
   }
+
+  // 2nd pass: resolve knockout progression sequentially
+  const stages = ['roundOf32', 'roundOf16', 'quarterFinals', 'semiFinals', 'thirdPlace', 'final'];
+  stages.forEach(stage => {
+    if (!newKnockout[stage]) return;
+    newKnockout[stage].forEach((koMatch: KnockoutMatch) => {
+      koMatch.team1 = resolveKnockout(koMatch.team1);
+      koMatch.team2 = resolveKnockout(koMatch.team2);
+    });
+  });
 
   return newKnockout;
 }

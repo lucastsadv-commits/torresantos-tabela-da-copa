@@ -71,8 +71,8 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   const computedKnockout = useMemo(() => {
     if (matches.length === 0) return initialKnockoutData;
-    return updateKnockout(matches, initialKnockoutData);
-  }, [matches]);
+    return updateKnockout(matches, initialKnockoutData, computedGroups);
+  }, [matches, computedGroups]);
 
   return (
     <TournamentContext.Provider value={{ groups: computedGroups, knockout: computedKnockout, loading }}>
