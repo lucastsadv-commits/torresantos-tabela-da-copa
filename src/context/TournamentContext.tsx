@@ -45,13 +45,18 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       .channel('public:matches')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'matches' }, (payload) => {
         console.log('Realtime Match Update:', payload);
-        // Atualiza a lista local de jogos com a nova alteração do banco
         setMatches((prev) => {
+          if (payload.eventType === 'DELETE') {
+            return prev.filter(m => m.id !== payload.old?.id);
+          }
           const updatedMatch = payload.new as Match;
+          if (!updatedMatch || !updatedMatch.id) return prev;
+          
           const index = prev.findIndex(m => m.id === updatedMatch.id);
           if (index !== -1) {
             const newMatches = [...prev];
-            newMatches[index] = updatedMatch;
+            // Safe merge to prevent partial payload overwriting full object
+            newMatches[index] = { ...newMatches[index], ...updatedMatch };
             return newMatches;
           }
           return [...prev, updatedMatch];

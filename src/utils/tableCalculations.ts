@@ -41,28 +41,30 @@ export function calculateGroups(matches: Match[], initialGroups: Group[]): Group
           const s1 = Number(match.score1);
           const s2 = Number(match.score2);
 
-          team1.played += 1;
-          team2.played += 1;
+          if (!isNaN(s1) && !isNaN(s2)) {
+            team1.played += 1;
+            team2.played += 1;
 
-          team1.goalsFor += s1;
-          team1.goalsAgainst += s2;
+            team1.goalsFor += s1;
+            team1.goalsAgainst += s2;
 
-          team2.goalsFor += s2;
-          team2.goalsAgainst += s1;
+            team2.goalsFor += s2;
+            team2.goalsAgainst += s1;
 
-          if (s1 > s2) {
-            team1.won += 1;
-            team1.points += 3;
-            team2.lost += 1;
-          } else if (s1 < s2) {
-            team2.won += 1;
-            team2.points += 3;
-            team1.lost += 1;
-          } else {
-            team1.drawn += 1;
-            team2.drawn += 1;
-            team1.points += 1;
-            team2.points += 1;
+            if (s1 > s2) {
+              team1.won += 1;
+              team1.points += 3;
+              team2.lost += 1;
+            } else if (s1 < s2) {
+              team2.won += 1;
+              team2.points += 3;
+              team1.lost += 1;
+            } else {
+              team1.drawn += 1;
+              team2.drawn += 1;
+              team1.points += 1;
+              team2.points += 1;
+            }
           }
         }
       }
