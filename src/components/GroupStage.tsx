@@ -90,7 +90,8 @@ const GroupStage: React.FC = () => {
                 {group.matches.map((match) => {
                   const isBrazilMatch = match.team1 === 'Brasil' || match.team2 === 'Brasil';
                   
-                  const live = match.status === 'IN_PLAY' || match.status === 'PAUSED';
+                  const statusUpper = match.status?.toUpperCase();
+                  const live = statusUpper === 'IN_PLAY' || statusUpper === 'PAUSED' || statusUpper === 'IN PLAY';
 
                   return (
                   <div key={match.id} className={`p-2 rounded shadow-sm flex flex-col gap-0.5 md:gap-1 transition-colors ${

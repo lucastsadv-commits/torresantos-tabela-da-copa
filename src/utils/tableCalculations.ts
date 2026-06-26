@@ -86,8 +86,71 @@ export function calculateGroups(matches: Match[], initialGroups: Group[]): Group
 export function updateKnockout(matches: Match[], initialKnockout: Record<string, KnockoutMatch[]>, groups: Group[] = []): Record<string, KnockoutMatch[]> {
   const newKnockout = JSON.parse(JSON.stringify(initialKnockout));
   
-  // Helper to resolve group placeholders like "1º A" or "2º C"
+  // 1. Coletar os terceiros colocados de todos os grupos
+  const thirdPlaceTeams = groups
+    .filter(g => g.teams.length >= 3)
+    .map(g => ({
+      ...g.teams[2],
+      groupLetter: g.name.replace('Grupo ', '').trim()
+    }));
+
+  // 2. Ordenar para pegar os 8 melhores
+  thirdPlaceTeams.sort((a, b) => {
+    if (b.points !== a.points) return b.points - a.points;
+    const sgA = a.goalsFor - a.goalsAgainst;
+    const sgB = b.goalsFor - b.goalsAgainst;
+    if (sgA !== sgB) return sgB - sgA;
+    return b.goalsFor - a.goalsFor;
+  });
+
+  const top8Thirds = thirdPlaceTeams.slice(0, 8);
+
+  // 3. Extrair todos os slots de 3º lugar únicos do initialKnockout
+  const thirdPlaceSlots: string[] = [];
+  for (const stage in newKnockout) {
+    newKnockout[stage].forEach((m: KnockoutMatch) => {
+      if (m.team1.startsWith('3º ') && !thirdPlaceSlots.includes(m.team1)) thirdPlaceSlots.push(m.team1);
+      if (m.team2.startsWith('3º ') && !thirdPlaceSlots.includes(m.team2)) thirdPlaceSlots.push(m.team2);
+    });
+  }
+
+  // 4. Backtracking para associar as 8 seleções aos 8 slots
+  const thirdPlaceAssignment: Record<string, string> = {};
+  const usedTeams = new Set<string>();
+
+  const assignThirdPlaces = (slotIndex: number): boolean => {
+    if (slotIndex >= thirdPlaceSlots.length) return true;
+    const slot = thirdPlaceSlots[slotIndex];
+    const allowedLetters = slot.replace('3º ', '').split('');
+
+    for (const team of top8Thirds) {
+      if (!usedTeams.has(team.name) && allowedLetters.includes(team.groupLetter)) {
+        thirdPlaceAssignment[slot] = team.name;
+        usedTeams.add(team.name);
+        if (assignThirdPlaces(slotIndex + 1)) return true;
+        usedTeams.delete(team.name);
+        delete thirdPlaceAssignment[slot];
+      }
+    }
+    return false;
+  };
+
+  if (top8Thirds.length > 0 && thirdPlaceSlots.length > 0) {
+    const success = assignThirdPlaces(0);
+    // Fallback: se o backtracking falhar em achar uma combinação perfeita
+    if (!success) {
+      const assigned = Object.values(thirdPlaceAssignment);
+      const unassignedTeams = top8Thirds.filter(t => !assigned.includes(t.name));
+      for (const slot of thirdPlaceSlots) {
+        if (!thirdPlaceAssignment[slot] && unassignedTeams.length > 0) {
+          thirdPlaceAssignment[slot] = unassignedTeams.pop()!.name;
+        }
+      }
+    }
+  }
+  
   const resolveTeam = (placeholder: string): string => {
+    // Check for 1st or 2nd place
     const matchGroup = placeholder.match(/^([12])º\s+([A-L])$/);
     if (matchGroup) {
       const position = parseInt(matchGroup[1], 10);
@@ -96,11 +159,17 @@ export function updateKnockout(matches: Match[], initialKnockout: Record<string,
       const group = groups.find(g => g.name === groupName);
       if (group && group.teams.length >= position) {
         const team = group.teams[position - 1];
-        // Only show the team in the bracket if they have played at least 1 match
-        // This acts as a live projection.
-        return team.played > 0 ? team.name : placeholder;
+        return team.name;
       }
     }
+
+    // Check for 3rd place matching mapping
+    if (placeholder.startsWith('3º ')) {
+      if (thirdPlaceAssignment[placeholder]) {
+        return thirdPlaceAssignment[placeholder];
+      }
+    }
+
     return placeholder;
   };
 

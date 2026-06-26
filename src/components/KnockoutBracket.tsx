@@ -12,7 +12,8 @@ const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => {
 
 
 
-  const live = match.status === 'IN_PLAY' || match.status === 'PAUSED';
+  const statusUpper = match.status?.toUpperCase();
+  const live = statusUpper === 'IN_PLAY' || statusUpper === 'PAUSED' || statusUpper === 'IN PLAY';
 
   return (
   <div className={`p-2 md:p-3 rounded-lg shadow-md flex flex-col gap-1.5 w-full max-w-[11rem] md:max-w-[14rem] relative z-10 transition-all ${
@@ -65,87 +66,69 @@ const KnockoutBracket: React.FC = () => {
   const { knockout } = useTournament();
 
   return (
-    <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20 overflow-x-auto">
+    <div className="w-full mx-auto px-2 py-10 md:py-20 flex flex-col items-center overflow-hidden">
       <h3 className="font-heading text-2xl md:text-3xl font-extrabold text-brand-primary text-center mb-4">
         Fase Final (Mata-Mata)
       </h3>
       
-      <div className="flex justify-center items-center gap-2 mb-12">
-        <div className="w-3 h-3 rounded-full bg-[#009B3A] shadow-[0_0_8px_rgba(0,155,58,0.5)]"></div>
+      <div className="flex justify-center items-center gap-2 mb-8 md:mb-12 text-center px-4">
+        <div className="w-3 h-3 flex-shrink-0 rounded-full bg-[#009B3A] shadow-[0_0_8px_rgba(0,155,58,0.5)]"></div>
         <p className="text-xs md:text-sm text-gray-500 font-medium">
           Caminhos em destaque indicam possíveis cruzamentos do Brasil
         </p>
       </div>
 
-      <div className="min-w-[800px] md:min-w-[1100px] flex justify-between gap-2 md:gap-4 pb-10">
+      <div className="w-full flex justify-center" style={{ zoom: 'min(1, calc(100vw / 1250))' }}>
+        <div className="w-[1250px] flex justify-between gap-3 pb-10 px-2">
         
-        {/* 16-Avos */}
-        <div className="flex-1 flex flex-col gap-4 md:gap-6 justify-around relative">
-          <h4 className="text-center font-bold text-brand-primary mb-4 uppercase tracking-wider text-sm bg-[#FAFAF9] sticky top-0 z-20">16-Avos de Final</h4>
-          {knockout.roundOf32.map((match) => (
+        {/* LADO ESQUERDO */}
+        <div className="flex-1 flex flex-col justify-around relative gap-4">
+          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">16-Avos</h4>
+          {knockout.roundOf32.slice(0, 8).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
             </div>
           ))}
         </div>
 
-        {/* Oitavas */}
-        <div className="flex-1 flex flex-col gap-8 md:gap-14 justify-around relative">
-          <h4 className="text-center font-bold text-brand-primary mb-4 uppercase tracking-wider text-sm bg-[#FAFAF9] sticky top-0 z-20">Oitavas de Final</h4>
-          {knockout.roundOf16.map((match) => (
+        <div className="flex-1 flex flex-col justify-around relative gap-8">
+          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Oitavas</h4>
+          {knockout.roundOf16.slice(0, 4).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
             </div>
           ))}
         </div>
 
-        {/* Quartas */}
-        <div className="flex-1 flex flex-col justify-around relative">
-          <h4 className="text-center font-bold text-brand-primary mb-4 uppercase tracking-wider text-sm bg-[#FAFAF9] sticky top-0 z-20">Quartas de Final</h4>
-          {knockout.quarterFinals.map((match) => (
+        <div className="flex-1 flex flex-col justify-around relative gap-16">
+          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Quartas</h4>
+          {knockout.quarterFinals.slice(0, 2).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
             </div>
           ))}
         </div>
 
-        {/* Semis */}
-        <div className="flex-1 flex flex-col justify-around relative">
-          <h4 className="text-center font-bold text-brand-primary mb-4 uppercase tracking-wider text-sm bg-[#FAFAF9] sticky top-0 z-20">Semifinais</h4>
-          {knockout.semiFinals.map((match) => (
+        <div className="flex-1 flex flex-col justify-around relative gap-32">
+          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Semi</h4>
+          {knockout.semiFinals.slice(0, 1).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
             </div>
           ))}
         </div>
 
-        {/* Disputa 3º Lugar (Isolado em sua própria coluna) */}
-        <div className="flex-1 flex flex-col justify-center ml-4 md:ml-8 relative min-w-[200px]">
-          <h4 className="text-center font-bold text-gray-500 mb-6 uppercase tracking-wider text-xs md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Disputa 3º Lugar</h4>
-          {knockout.thirdPlace.map((match) => (
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              key={match.id} 
-              className="relative flex justify-center"
-            >
-              <MatchCard match={match} />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Final (Isolada em sua própria coluna com Cores da Marca) */}
-        <div className="flex-1 flex flex-col justify-center ml-6 md:ml-12 relative">
+        {/* CENTRO (Final e 3º Lugar) */}
+        <div className="flex-[1.5] flex flex-col justify-center items-center relative gap-8 min-w-[280px]">
           
           {/* Caixa Isolada VIP para a Final usando Cores do Escritório */}
-          <div className="bg-gradient-to-b from-brand-primary via-[#00112E] to-brand-primary p-6 md:p-10 rounded-3xl shadow-[0_0_40px_rgba(179,81,32,0.2)] border border-brand-accent/40 flex flex-col items-center justify-center relative min-w-[280px]">
+          <div className="bg-gradient-to-b from-brand-primary via-[#00112E] to-brand-primary p-6 md:p-8 rounded-3xl shadow-[0_0_40px_rgba(179,81,32,0.2)] border border-brand-accent/40 flex flex-col items-center justify-center relative w-full">
             {/* Efeitos de Luz de Fundo com as cores da marca */}
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-70"></div>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(179,81,32,0.15)_0%,transparent_70%)] rounded-3xl pointer-events-none"></div>
             
             {/* Troféu SVG (Agora na cor Accent da marca) */}
-            <svg className="w-12 h-12 md:w-16 md:h-16 text-brand-accent mb-4 drop-shadow-[0_0_15px_rgba(179,81,32,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="w-10 h-10 md:w-12 md:h-12 text-brand-accent mb-3 drop-shadow-[0_0_15px_rgba(179,81,32,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
               <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
               <path d="M4 22h16"></path>
@@ -154,10 +137,11 @@ const KnockoutBracket: React.FC = () => {
               <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
             </svg>
 
-            <h4 className="text-center font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-orange-300 via-brand-accent to-brand-orange-500 mb-8 uppercase tracking-[0.2em] text-lg md:text-xl drop-shadow-sm">A Grande Final</h4>
+            <h4 className="text-center font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-orange-300 via-brand-accent to-brand-orange-500 mb-6 uppercase tracking-[0.1em] text-md md:text-lg drop-shadow-sm">A Grande Final</h4>
             
             {knockout.final.map((match) => {
-              const live = match.status === 'IN_PLAY' || match.status === 'PAUSED';
+              const statusUpper = match.status?.toUpperCase();
+              const live = statusUpper === 'IN_PLAY' || statusUpper === 'PAUSED' || statusUpper === 'IN PLAY';
               
               return (
               <motion.div 
@@ -169,8 +153,8 @@ const KnockoutBracket: React.FC = () => {
               >
                 {/* Card Customizado da Final (Cores da Marca) */}
                 <div className={`p-[1px] rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500 ${live ? 'bg-gradient-to-br from-red-500 to-red-900 animate-pulse' : 'bg-gradient-to-br from-brand-accent/40 to-[#00112E]'}`}>
-                  <div className="bg-brand-primary rounded-xl p-4 md:p-5 flex flex-col gap-3 border border-brand-accent/20">
-                    <div className="flex items-center justify-center gap-2 text-[10px] md:text-xs text-brand-orange-300 font-bold uppercase tracking-widest bg-black/30 -mx-4 md:-mx-5 -mt-4 md:-mt-5 pt-2 pb-1.5 mb-2 rounded-t-xl border-b border-brand-accent/20">
+                  <div className="bg-brand-primary rounded-xl p-3 md:p-4 flex flex-col gap-2 border border-brand-accent/20">
+                    <div className="flex items-center justify-center gap-2 text-[10px] md:text-xs text-brand-orange-300 font-bold uppercase tracking-widest bg-black/30 -mx-3 md:-mx-4 -mt-3 md:-mt-4 pt-1.5 pb-1 mb-1.5 rounded-t-xl border-b border-brand-accent/20">
                       {live && (
                         <span className="relative flex h-2 w-2" title="Jogo em andamento">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -180,19 +164,19 @@ const KnockoutBracket: React.FC = () => {
                       <span className={live ? "text-red-500" : ""}>{live ? `AO VIVO${match.minute ? ` • ${match.minute}` : ''}` : match.date}</span>
                     </div>
                     
-                    <div className="flex justify-between items-center gap-4">
-                      <span className={`font-black text-sm md:text-base truncate ${match.team1 === 'Brasil' ? 'text-[#009B3A] drop-shadow-[0_0_5px_rgba(0,155,58,0.8)]' : 'text-gray-100'}`}>
+                    <div className="flex justify-between items-center gap-3">
+                      <span className={`font-black text-xs md:text-sm truncate ${match.team1 === 'Brasil' ? 'text-[#009B3A] drop-shadow-[0_0_5px_rgba(0,155,58,0.8)]' : 'text-gray-100'}`}>
                         {match.team1}
                       </span>
-                      <span className="bg-[#00112E] border border-brand-accent/30 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded font-black text-brand-orange-400 text-sm md:text-lg shadow-inner">
+                      <span className="bg-[#00112E] border border-brand-accent/30 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded font-black text-brand-orange-400 text-xs md:text-sm shadow-inner">
                         {match.score1 !== null ? match.score1 : '-'}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center gap-4">
-                      <span className={`font-black text-sm md:text-base truncate ${match.team2 === 'Brasil' ? 'text-[#009B3A] drop-shadow-[0_0_5px_rgba(0,155,58,0.8)]' : 'text-gray-100'}`}>
+                    <div className="flex justify-between items-center gap-3">
+                      <span className={`font-black text-xs md:text-sm truncate ${match.team2 === 'Brasil' ? 'text-[#009B3A] drop-shadow-[0_0_5px_rgba(0,155,58,0.8)]' : 'text-gray-100'}`}>
                         {match.team2}
                       </span>
-                      <span className="bg-[#00112E] border border-brand-accent/30 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded font-black text-brand-orange-400 text-sm md:text-lg shadow-inner">
+                      <span className="bg-[#00112E] border border-brand-accent/30 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded font-black text-brand-orange-400 text-xs md:text-sm shadow-inner">
                         {match.score2 !== null ? match.score2 : '-'}
                       </span>
                     </div>
@@ -203,8 +187,60 @@ const KnockoutBracket: React.FC = () => {
             })}
           </div>
 
+          <div className="flex flex-col items-center justify-center w-full mt-4">
+            <h4 className="text-center font-bold text-gray-500 mb-3 uppercase tracking-wider text-xs bg-[#FAFAF9] px-2">Disputa 3º Lugar</h4>
+            {knockout.thirdPlace.map((match) => (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                key={match.id} 
+                className="relative flex justify-center w-full"
+              >
+                <MatchCard match={match} />
+              </motion.div>
+            ))}
+          </div>
         </div>
 
+        {/* LADO DIREITO */}
+        <div className="flex-1 flex flex-col justify-around relative gap-32">
+          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Semi</h4>
+          {knockout.semiFinals.slice(1, 2).map((match) => (
+            <div key={match.id} className="relative flex justify-center">
+              <MatchCard match={match} />
+            </div>
+          ))}
+        </div>
+
+        <div className="flex-1 flex flex-col justify-around relative gap-16">
+          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Quartas</h4>
+          {knockout.quarterFinals.slice(2, 4).map((match) => (
+            <div key={match.id} className="relative flex justify-center">
+              <MatchCard match={match} />
+            </div>
+          ))}
+        </div>
+
+        <div className="flex-1 flex flex-col justify-around relative gap-4">
+          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Oitavas</h4>
+          {knockout.roundOf16.slice(4, 8).map((match) => (
+            <div key={match.id} className="relative flex justify-center">
+              <MatchCard match={match} />
+            </div>
+          ))}
+        </div>
+
+        <div className="flex-1 flex flex-col justify-around relative gap-2">
+          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">16-Avos</h4>
+          {knockout.roundOf32.slice(8, 16).map((match) => (
+            <div key={match.id} className="relative flex justify-center">
+              <MatchCard match={match} />
+            </div>
+          ))}
+        </div>
+
+      </div>
       </div>
     </div>
   );
