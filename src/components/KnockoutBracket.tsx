@@ -82,8 +82,8 @@ const KnockoutBracket: React.FC = () => {
         <div className="min-w-[1250px] flex justify-between gap-3 pb-10 px-4 mx-auto">
         
         {/* LADO ESQUERDO */}
-        <div className="flex-1 flex flex-col justify-around relative gap-4">
-          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">16-Avos</h4>
+        <div className="flex-1 flex flex-col justify-around relative gap-4 pt-10">
+          <h4 className="absolute top-0 left-0 w-full text-center font-bold text-brand-primary uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] z-20 py-2">16-Avos</h4>
           {knockout.roundOf32.slice(0, 8).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
@@ -91,8 +91,8 @@ const KnockoutBracket: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex-1 flex flex-col justify-around relative gap-8">
-          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Oitavas</h4>
+        <div className="flex-1 flex flex-col justify-around relative gap-8 pt-10">
+          <h4 className="absolute top-0 left-0 w-full text-center font-bold text-brand-primary uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] z-20 py-2">Oitavas</h4>
           {knockout.roundOf16.slice(0, 4).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
@@ -100,8 +100,8 @@ const KnockoutBracket: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex-1 flex flex-col justify-around relative gap-16">
-          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Quartas</h4>
+        <div className="flex-1 flex flex-col justify-around relative gap-16 pt-10">
+          <h4 className="absolute top-0 left-0 w-full text-center font-bold text-brand-primary uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] z-20 py-2">Quartas</h4>
           {knockout.quarterFinals.slice(0, 2).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
@@ -109,8 +109,8 @@ const KnockoutBracket: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex-1 flex flex-col justify-around relative gap-32">
-          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Semi</h4>
+        <div className="flex-1 flex flex-col justify-around relative gap-32 pt-10">
+          <h4 className="absolute top-0 left-0 w-full text-center font-bold text-brand-primary uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] z-20 py-2">Semi</h4>
           {knockout.semiFinals.slice(0, 1).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
@@ -204,8 +204,8 @@ const KnockoutBracket: React.FC = () => {
         </div>
 
         {/* LADO DIREITO */}
-        <div className="flex-1 flex flex-col justify-around relative gap-32">
-          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Semi</h4>
+        <div className="flex-1 flex flex-col justify-around relative gap-32 pt-10">
+          <h4 className="absolute top-0 left-0 w-full text-center font-bold text-brand-primary uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] z-20 py-2">Semi</h4>
           {knockout.semiFinals.slice(1, 2).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
@@ -213,8 +213,8 @@ const KnockoutBracket: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex-1 flex flex-col justify-around relative gap-16">
-          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Quartas</h4>
+        <div className="flex-1 flex flex-col justify-around relative gap-16 pt-10">
+          <h4 className="absolute top-0 left-0 w-full text-center font-bold text-brand-primary uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] z-20 py-2">Quartas</h4>
           {knockout.quarterFinals.slice(2, 4).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
@@ -222,8 +222,8 @@ const KnockoutBracket: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex-1 flex flex-col justify-around relative gap-4">
-          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">Oitavas</h4>
+        <div className="flex-1 flex flex-col justify-around relative gap-4 pt-10">
+          <h4 className="absolute top-0 left-0 w-full text-center font-bold text-brand-primary uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] z-20 py-2">Oitavas</h4>
           {knockout.roundOf16.slice(4, 8).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
@@ -231,8 +231,8 @@ const KnockoutBracket: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex-1 flex flex-col justify-around relative gap-2">
-          <h4 className="text-center font-bold text-brand-primary mb-2 uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] sticky top-0 z-20">16-Avos</h4>
+        <div className="flex-1 flex flex-col justify-around relative gap-2 pt-10">
+          <h4 className="absolute top-0 left-0 w-full text-center font-bold text-brand-primary uppercase tracking-wider text-[10px] md:text-sm bg-[#FAFAF9] z-20 py-2">16-Avos</h4>
           {knockout.roundOf32.slice(8, 16).map((match) => (
             <div key={match.id} className="relative flex justify-center">
               <MatchCard match={match} />
