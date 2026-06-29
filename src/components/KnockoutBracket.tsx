@@ -78,8 +78,8 @@ const KnockoutBracket: React.FC = () => {
         </p>
       </div>
 
-      <div className="w-full flex justify-center" style={{ zoom: 'min(1, calc(100vw / 1250))' }}>
-        <div className="w-[1250px] flex justify-between gap-3 pb-10 px-2">
+      <div className="w-full overflow-x-auto pb-4">
+        <div className="min-w-[1250px] flex justify-between gap-3 pb-10 px-4 mx-auto">
         
         {/* LADO ESQUERDO */}
         <div className="flex-1 flex flex-col justify-around relative gap-4">
