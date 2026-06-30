@@ -9,6 +9,8 @@ export type Match = {
   location: string;
   status?: string;
   minute?: string | null;
+  penalty1?: number | null;
+  penalty2?: number | null;
 };
 
 export type TeamStats = {
@@ -40,6 +42,8 @@ export type KnockoutMatch = {
   nextMatchId?: string;
   status?: string;
   minute?: string | null;
+  penalty1?: number | null;
+  penalty2?: number | null;
 };
 
 export const groupsData: Group[] = [

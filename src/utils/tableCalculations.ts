@@ -184,6 +184,10 @@ export function updateKnockout(matches: Match[], initialKnockout: Record<string,
       if (match && match.status === 'FINISHED' && match.score1 !== null && match.score2 !== null) {
         if (match.score1 > match.score2) return match.team1;
         if (match.score2 > match.score1) return match.team2;
+        if (match.score1 === match.score2 && match.penalty1 != null && match.penalty2 != null) {
+          if (match.penalty1 > match.penalty2) return match.team1;
+          if (match.penalty2 > match.penalty1) return match.team2;
+        }
       }
     } else if (placeholder.startsWith('Perdedor')) {
       const matchId = placeholder.split(' ')[1];
@@ -192,6 +196,10 @@ export function updateKnockout(matches: Match[], initialKnockout: Record<string,
       if (match && match.status === 'FINISHED' && match.score1 !== null && match.score2 !== null) {
         if (match.score1 < match.score2) return match.team1;
         if (match.score2 < match.score1) return match.team2;
+        if (match.score1 === match.score2 && match.penalty1 != null && match.penalty2 != null) {
+          if (match.penalty1 < match.penalty2) return match.team1;
+          if (match.penalty2 < match.penalty1) return match.team2;
+        }
       }
     }
     return placeholder;
@@ -217,6 +225,8 @@ export function updateKnockout(matches: Match[], initialKnockout: Record<string,
         koMatch.score2 = liveMatch.score2;
         koMatch.status = liveMatch.status;
         koMatch.minute = liveMatch.minute;
+        koMatch.penalty1 = liveMatch.penalty1;
+        koMatch.penalty2 = liveMatch.penalty2;
         
         // If API sent explicit team names (overriding placeholders)
         if (liveMatch.team1 && !liveMatch.team1.includes('º')) koMatch.team1 = liveMatch.team1;

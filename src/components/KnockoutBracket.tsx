@@ -43,21 +43,31 @@ const MatchCard: React.FC<{ match: KnockoutMatch }> = ({ match }) => {
       <span className={`font-medium text-xs truncate max-w-[80px] md:max-w-[120px] ${match.team1 === 'Brasil' ? 'font-extrabold text-[#009B3A]' : 'text-gray-800'}`}>
         {match.team1}
       </span>
-      <span className={`w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded font-bold text-xs md:text-sm ${
-        isBrazilPath ? 'bg-[#FEDF00]/20 text-[#009B3A]' : 'bg-gray-100 text-brand-primary'
-      }`}>
-        {match.score1 !== null ? match.score1 : '-'}
-      </span>
+      <div className="flex items-center gap-1">
+        {match.penalty1 != null && (
+          <span className="text-[10px] md:text-xs text-gray-500 font-bold">({match.penalty1})</span>
+        )}
+        <span className={`w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded font-bold text-xs md:text-sm ${
+          isBrazilPath ? 'bg-[#FEDF00]/20 text-[#009B3A]' : 'bg-gray-100 text-brand-primary'
+        }`}>
+          {match.score1 !== null ? match.score1 : '-'}
+        </span>
+      </div>
     </div>
     <div className="flex justify-between items-center px-1">
       <span className={`font-medium text-xs truncate max-w-[80px] md:max-w-[120px] ${match.team2 === 'Brasil' ? 'font-extrabold text-[#009B3A]' : 'text-gray-800'}`}>
         {match.team2}
       </span>
-      <span className={`w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded font-bold text-xs md:text-sm ${
-        isBrazilPath ? 'bg-[#FEDF00]/20 text-[#009B3A]' : 'bg-gray-100 text-brand-primary'
-      }`}>
-        {match.score2 !== null ? match.score2 : '-'}
-      </span>
+      <div className="flex items-center gap-1">
+        {match.penalty2 != null && (
+          <span className="text-[10px] md:text-xs text-gray-500 font-bold">({match.penalty2})</span>
+        )}
+        <span className={`w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded font-bold text-xs md:text-sm ${
+          isBrazilPath ? 'bg-[#FEDF00]/20 text-[#009B3A]' : 'bg-gray-100 text-brand-primary'
+        }`}>
+          {match.score2 !== null ? match.score2 : '-'}
+        </span>
+      </div>
     </div>
   </div>
 )};
@@ -168,17 +178,27 @@ const KnockoutBracket: React.FC = () => {
                       <span className={`font-black text-xs md:text-sm truncate ${match.team1 === 'Brasil' ? 'text-[#009B3A] drop-shadow-[0_0_5px_rgba(0,155,58,0.8)]' : 'text-gray-100'}`}>
                         {match.team1}
                       </span>
-                      <span className="bg-[#00112E] border border-brand-accent/30 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded font-black text-brand-orange-400 text-xs md:text-sm shadow-inner">
-                        {match.score1 !== null ? match.score1 : '-'}
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        {match.penalty1 != null && (
+                          <span className="text-xs md:text-sm text-brand-orange-300 font-bold opacity-80">({match.penalty1})</span>
+                        )}
+                        <span className="bg-[#00112E] border border-brand-accent/30 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded font-black text-brand-orange-400 text-xs md:text-sm shadow-inner">
+                          {match.score1 !== null ? match.score1 : '-'}
+                        </span>
+                      </div>
                     </div>
                     <div className="flex justify-between items-center gap-3">
                       <span className={`font-black text-xs md:text-sm truncate ${match.team2 === 'Brasil' ? 'text-[#009B3A] drop-shadow-[0_0_5px_rgba(0,155,58,0.8)]' : 'text-gray-100'}`}>
                         {match.team2}
                       </span>
-                      <span className="bg-[#00112E] border border-brand-accent/30 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded font-black text-brand-orange-400 text-xs md:text-sm shadow-inner">
-                        {match.score2 !== null ? match.score2 : '-'}
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        {match.penalty2 != null && (
+                          <span className="text-xs md:text-sm text-brand-orange-300 font-bold opacity-80">({match.penalty2})</span>
+                        )}
+                        <span className="bg-[#00112E] border border-brand-accent/30 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded font-black text-brand-orange-400 text-xs md:text-sm shadow-inner">
+                          {match.score2 !== null ? match.score2 : '-'}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
